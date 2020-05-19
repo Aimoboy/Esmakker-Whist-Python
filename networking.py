@@ -62,7 +62,7 @@ class Server:
 
         self.event_full_connections.trigger(self, event.EventArgs())
 
-    def send_msg(self, msg: str, sock_num: int):
+    def send_msg(self, msg: str, sock_num: int) -> None:
         """Send a message msg to one of the clients specified by sock_num."""
 
         byte_msg: bytes = bytes(msg.encode("utf-8"))
@@ -71,7 +71,7 @@ class Server:
         combined_msg: bytes = msg_head + byte_msg
         self.client_sockets[sock_num].send(combined_msg)
 
-    def thread_listen(self, s: socket, sock_num: int):
+    def thread_listen(self, s: socket, sock_num: int) -> None:
         """Thread function used for listening on each socket."""
 
         while self.running:
